@@ -43,11 +43,35 @@ function initYesButton(): void {
 }
 
 /**
+ * Sets up fallback handling for all GIF images.
+ * If a GIF fails to load, hides its container gracefully instead of showing broken content.
+ */
+function initGifFallbacks(): void {
+  try {
+    const gifImages = document.querySelectorAll<HTMLImageElement>('.cute-gif');
+    gifImages.forEach((img) => {
+      img.addEventListener('error', () => {
+        const container = img.closest('.gif-container') as HTMLElement | null;
+        if (container) {
+          container.style.display = 'none';
+        }
+      });
+    });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error(`[Main] Failed to initialize GIF fallbacks: ${message}`);
+  }
+}
+
+/**
  * Main initialization function.
  * Sets up all interactive elements and animations when the DOM is ready.
  */
 function init(): void {
   try {
+    /* Set up GIF error fallbacks */
+    initGifFallbacks();
+
     /* Start the floating hearts background */
     startFloatingHearts('hearts-container');
 
