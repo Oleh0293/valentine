@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💝 Будь моєю Валентинкою? 💝</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Floating hearts background -->
+      <div id="hearts-container" aria-hidden="true"></div>
+
+      <!-- Main question screen -->
+      <div id="question-screen" class="screen active">
+        <div class="card">
+          <div class="bear-emoji">🧸</div>
+          <h1 class="title">Будеш моєю Валентинкою?</h1>
+          <p class="subtitle">Я хочу тебе дещо важливе запитати...</p>
+          <div class="gif-container">
+            <img
+              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd1MHNlZHNhOHRxdHZkc3FjbGlxMDNkbjRpNGtzcGNvYmlrZXJjdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/llKJGxQ1ESmac/giphy.gif"
+              alt="Милий ведмедик просить бути валентинкою"
+              class="cute-gif"
+              loading="eager"
+            />
+          </div>
+          <div class="buttons-container">
+            <button id="yes-button" class="btn btn-yes" type="button">
+              Так! 💖
+            </button>
+            <button id="no-button" class="btn btn-no" type="button">
+              Ні 💔
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Celebration screen -->
+      <div id="celebration-screen" class="screen">
+        <div class="card celebration-card">
+          <div class="celebration-emoji">🎉💖🎉</div>
+          <h1 class="celebration-title">Юхууу!!!</h1>
+          <p class="celebration-text">Я знав, що ти скажеш так! 🥰</p>
+          <div class="gif-container">
+            <img
+              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzU3OWM2ZWRjNTdhODkyMTdkZWE2MzE1MWRiOThhNjRiM2RlMTRiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kcEEHDNIYwguX4dmpA/giphy.gif"
+              alt="Щасливе святкування"
+              class="cute-gif celebration-gif"
+              loading="lazy"
+            />
+          </div>
+          <p class="love-message">Ти щойно зробила мене найщасливішою людиною! 💕</p>
+          <div class="hearts-burst" id="hearts-burst" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

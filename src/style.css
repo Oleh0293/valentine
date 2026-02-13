@@ -1,0 +1,552 @@
+/* ===================================
+   Valentine's Day - Global Styles
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #ff1493;
+  --color-primary-light: #ff69b4;
+  --color-primary-dark: #c71585;
+  --color-secondary: #ff6b9d;
+  --color-accent: #ffd700;
+  --color-bg-start: #1a0011;
+  --color-bg-end: #2d0028;
+  --color-card-bg: rgba(255, 255, 255, 0.08);
+  --color-card-border: rgba(255, 105, 180, 0.3);
+  --color-text: #fff;
+  --color-text-soft: rgba(255, 255, 255, 0.85);
+  --color-yes-bg: #ff1493;
+  --color-yes-hover: #ff69b4;
+  --color-no-bg: #888;
+  --color-no-hover: #666;
+  --font-display: 'Dancing Script', cursive;
+  --font-body: 'Quicksand', sans-serif;
+  --shadow-glow: 0 0 30px rgba(255, 20, 147, 0.4);
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 20, 147, 0.15);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ===================================
+   Floating Hearts Background
+   =================================== */
+
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10%;
+  animation: floatUp linear infinite;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(720deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ===================================
+   Screens
+   =================================== */
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  z-index: 1;
+  padding: 1rem;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* ===================================
+   Card
+   =================================== */
+
+.card {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  z-index: 2;
+  animation: cardAppear 1s ease-out;
+}
+
+@keyframes cardAppear {
+  from {
+    transform: scale(0.8) translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   Typography & Content
+   =================================== */
+
+.bear-emoji {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent), var(--color-primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-soft);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+/* ===================================
+   GIF Container
+   =================================== */
+
+.gif-container {
+  margin: 1.5rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 280px;
+  box-shadow: 0 8px 30px rgba(255, 20, 147, 0.2);
+  border: 2px solid rgba(255, 105, 180, 0.2);
+}
+
+.cute-gif {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+
+.buttons-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  min-height: 60px;
+  position: relative;
+}
+
+.btn {
+  padding: 14px 36px;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--color-yes-bg), var(--color-secondary));
+  color: white;
+  box-shadow: 0 4px 20px rgba(255, 20, 147, 0.4);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(255, 20, 147, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 35px rgba(255, 20, 147, 0.7), 0 0 60px rgba(255, 20, 147, 0.3);
+  }
+}
+
+.btn-yes:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 30px rgba(255, 20, 147, 0.6);
+}
+
+.btn-yes:active {
+  transform: scale(0.98);
+}
+
+.btn-no {
+  background: linear-gradient(135deg, var(--color-no-bg), #666);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+
+.btn-no.runaway {
+  position: fixed;
+  z-index: 100;
+}
+
+.btn-no:hover {
+  background: linear-gradient(135deg, #999, #777);
+}
+
+/* Growing Yes button effect */
+.btn-yes.growing-1 {
+  padding: 16px 42px;
+  font-size: 1.25rem;
+}
+
+.btn-yes.growing-2 {
+  padding: 18px 48px;
+  font-size: 1.35rem;
+}
+
+.btn-yes.growing-3 {
+  padding: 20px 54px;
+  font-size: 1.45rem;
+}
+
+.btn-yes.growing-4 {
+  padding: 22px 60px;
+  font-size: 1.55rem;
+}
+
+/* ===================================
+   Celebration Screen
+   =================================== */
+
+.celebration-card {
+  animation: celebrationAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes celebrationAppear {
+  from {
+    transform: scale(0.3) rotate(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.celebration-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  animation: celebrationBounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes celebrationBounce {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.celebration-title {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary-light), var(--color-accent));
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.celebration-text {
+  font-size: 1.3rem;
+  color: var(--color-text-soft);
+  margin-bottom: 1rem;
+}
+
+.celebration-gif {
+  max-width: 300px;
+}
+
+.love-message {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-primary-light);
+  margin-top: 1.5rem;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   Burst Hearts (celebration)
+   =================================== */
+
+.burst-heart {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 1000;
+  animation: burstFloat 3s ease-out forwards;
+}
+
+@keyframes burstFloat {
+  0% {
+    transform: translate(0, 0) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===================================
+   Sparkle on cursor near Yes button
+   =================================== */
+
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1rem;
+  z-index: 999;
+  animation: sparkleFade 0.8s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 600px) {
+  .card {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    margin: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .bear-emoji {
+    font-size: 3rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px 28px;
+    font-size: 1.05rem;
+  }
+
+  .gif-container {
+    max-width: 220px;
+  }
+
+  .celebration-title {
+    font-size: 2.5rem;
+  }
+
+  .celebration-emoji {
+    font-size: 2.5rem;
+  }
+
+  .love-message {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ===================================
+   Accessibility
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .floating-heart {
+    display: none;
+  }
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
